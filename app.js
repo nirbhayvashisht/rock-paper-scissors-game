@@ -1,5 +1,5 @@
-const userScore = 0;
-const computerScore = 0;
+let userScore = 0;
+let computerScore = 0;
 
 
 // Catching the dom 
@@ -21,7 +21,23 @@ function getComputerChoice(){
     return choices[randomIndex];    
 }
 
-getComputerChoice();
+
+function win(/*userC, compC*/){
+    /*
+    userC = userChoice
+    compC = computerChoice
+    */ 
+    userScore++;
+    userScore_span.innerHTML = userScore; 
+}
+function lose(){
+    computerScore++;
+    computerScore_span.innerHTML = computerScore;
+}
+function draw(){
+    console.log("draw");
+}
+
 function game(userChoice){
     const computerChoice = getComputerChoice();
     console.log("User choice : "+userChoice);
