@@ -15,84 +15,92 @@ const scissors_div = document.getElementById("s");
 
 // ----------------------------------------------------------
 
-function getComputerChoice(){
+function getComputerChoice() {
     //getComputerChoice is returning a random computer choice
-    choices = ["r", "p" , "s"];
+    choices = ["r", "p", "s"];
     let randomIndex = Math.floor(Math.random() * 3); //produces a random number between 0 and 3(excluding)
-    return choices[randomIndex];    
+    return choices[randomIndex];
 }
 
-function convertToWord(letter){
-    if(letter === 'r') 
+function convertToWord(letter) {
+    if (letter === 'r')
         return "Rock";
-    else if(letter === 'p')
+    else if (letter === 'p')
         return "Paper";
     else
         return "Scissors";
 }
 
-function win(userC, compC){
+function win(userC, compC) {
     /*
     userC = userChoice
     compC = computerChoice
-    */ 
+    */
+
+    const smallUser = "user".fontsize(3).sub();
+    const smallComp = "comp".fontsize(3).sub();
+    const userChoice_div = document.getElementById(userC);
+
     userScore++;
     userScore_span.innerHTML = userScore;
-    const smallUser = "user".fontsize(3).sub();
-    const smallComp = "comp".fontsize(3).sub();
+
     result_div.innerHTML = `${convertToWord(userC)}${smallUser} beats ${convertToWord(compC)}${smallComp} You Win!`;
+    userChoice_div.classList.add("green-glow");
+    setTimeout(function () {
+        userChoice_div.classList.remove("green-glow");
+    }, 700);
 }
 
-function lose(userC, compC){
+function lose(userC, compC) {
+    const smallUser = "user".fontsize(3).sub();
+    const smallComp = "comp".fontsize(3).sub();
+    const compChoice_div = document.getElementById(userC);
+
     computerScore++;
     computerScore_span.innerHTML = computerScore;
-    const smallUser = "user".fontsize(3).sub();
-    const smallComp = "comp".fontsize(3).sub();
     result_div.innerHTML = `${convertToWord(compC)}${smallComp} beats ${convertToWord(userC)}${smallUser} You Lose!`;
+    compChoice_div.classList.add("red-glow");
+    setTimeout(function () {
+        compChoice_div.classList.remove("red-glow");
+    }, 700)
 }
 
-function draw(){
+function draw() {
     result_div.innerHTML = "It's a Draw";
 }
 
-function game(userChoice){
+function game(userChoice) {
     const computerChoice = getComputerChoice();
-    console.log("User choice : "+userChoice);
-    console.log("Computer choice : "+computerChoice);
-    switch(userChoice+computerChoice){
+    console.log("User choice : " + userChoice);
+    console.log("Computer choice : " + computerChoice);
+    switch (userChoice + computerChoice) {
         //cases in which the user wins
         case "rs":
         case "pr":
         case "sp":
-                    win(userChoice,computerChoice);
-                    break;
+            win(userChoice, computerChoice);
+            break;
         //cases in which the computer wins
         case "sr":
         case "rp":
         case "ps":
-                    lose(userChoice,computerChoice);
-                    break;
+            lose(userChoice, computerChoice);
+            break;
         //draw cases
         case "rr":
         case "pp":
         case "ss":
-                    draw();
-                    break;
+            draw();
+            break;
     }
 }
 
-function main(){
-    rock_div.addEventListener('click', function () {
-        game("r");
-    })
+function main() {
+    rock_div.addEventListener('click', () => game("r"))
 
-    paper_div.addEventListener('click', function () {
-        game("p");
-    })
+    paper_div.addEventListener('click', () => game("p"))
 
-    scissors_div.addEventListener('click', function () {
-        game("s");  
-    })
+    scissors_div.addEventListener('click', () => game("s"))
 }
 
 main();

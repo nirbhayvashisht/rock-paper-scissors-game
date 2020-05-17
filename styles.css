@@ -56,6 +56,7 @@ header > h1{
 
 .result{
     font-size: 40px;
+    margin-top: 30px;
     text-align: center;
 }
 
@@ -91,6 +92,9 @@ header > h1{
     background: yellow;
 }
 
+
+
+/* --------------------------------------------- */
 #s{
     padding-left: 14px;
     padding-top: 12px;
@@ -108,6 +112,25 @@ header > h1{
     font-size: 20px;
     margin-top: 20px;
     color: white;
+}
+
+/*-----------------------------------------------*/
+.green-glow{
+    background: #4dcc7d;
+    border: 4px solid green;
+}
+
+.green-glow:hover{
+    background: #4dcc7d;
+}
+
+.red-glow{
+    background: red;
+    border: 4px solid darkred;
+}
+
+.red-glow:hover{
+    background: red;
 }
 
 
